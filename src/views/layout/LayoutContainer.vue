@@ -1,7 +1,7 @@
 <script setup>
 import {
   Management,
-  Promotion,
+  MessageBox,
   UserFilled,
   User,
   Crop,
@@ -38,15 +38,22 @@ const onCommand = (command) => {
     router.push(`/user/${command}`)
   }
 }
+
+const toHome = () => {
+  router.push('/article/manage')
+}
 </script>
 
 <template>
   <el-container class="layout-container">
     <el-aside width="200px">
-      <div class="el-aside__logo"></div>
+      <div class="el-aside__logo" @click="toHome">
+        <div class="icoimg"></div>
+        <div class="icotext"><span>文章后台管理系统</span></div>
+      </div>
       <el-menu
         active-text-color="#ffd04b"
-        background-color="#0f2a2e"
+        background-color="#014a60"
         :default-active="$route.path"
         text-color="#fff"
         router
@@ -56,7 +63,7 @@ const onCommand = (command) => {
           <span>文章分类</span>
         </el-menu-item>
         <el-menu-item index="/article/manage">
-          <el-icon><Promotion /></el-icon>
+          <el-icon><MessageBox /></el-icon>
           <span>文章管理</span>
         </el-menu-item>
         <el-sub-menu index="/user">
@@ -90,7 +97,10 @@ const onCommand = (command) => {
         </div>
         <el-dropdown placement="bottom-end" @command="onCommand">
           <span class="el-dropdown__box">
-            <el-avatar :src="userStore.user.user_pic || avatar" />
+            <el-avatar
+              shape="square"
+              :src="userStore.user.user_pic || avatar"
+            />
             <el-icon><CaretBottom /></el-icon>
           </span>
           <template #dropdown>
@@ -122,10 +132,27 @@ const onCommand = (command) => {
 .layout-container {
   height: 100vh;
   .el-aside {
-    background-color: #0f2a2e;
+    background-color: #014a60;
     &__logo {
-      height: 120px;
-      background: url('@/assets/logo.png') no-repeat center / 120px auto;
+      display: flex;
+      height: 65px;
+      padding: 6%;
+      background-color: rgb(209, 209, 209, 0.7);
+      border-radius: 15px;
+      margin: 5%;
+      .icoimg {
+        width: 50%;
+        background: url('@/assets/icon.ico') no-repeat center / 50px auto;
+      }
+      .icotext {
+        height: 65px;
+        width: 50%;
+        font-size: 17px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center; /* 水平居中 */
+        align-items: center; /* 垂直居中 */
+      }
     }
     .el-menu {
       border-right: none;

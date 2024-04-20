@@ -75,11 +75,24 @@ watch(isRegister, () => {
     repassword: ''
   }
 })
+
+const handleEnter = () => {
+  if (isRegister.value) {
+    register()
+  } else {
+    login()
+  }
+}
 </script>
 
 <template>
   <el-row class="login-page">
-    <el-col :span="12" class="bg"></el-col>
+    <el-col :span="12" class="bg">
+      <div>
+        <p>eventAdmin</p>
+        <p>文章后台管理系统</p>
+      </div>
+    </el-col>
     <el-col :span="6" :offset="3" class="form">
       <el-form
         :model="formModel"
@@ -97,6 +110,7 @@ watch(isRegister, () => {
             v-model="formModel.username"
             :prefix-icon="User"
             placeholder="请输入用户名"
+            @keyup.enter="handleEnter"
           ></el-input>
         </el-form-item>
         <el-form-item prop="password">
@@ -105,6 +119,7 @@ watch(isRegister, () => {
             :prefix-icon="Lock"
             type="password"
             placeholder="请输入密码"
+            @keyup.enter="handleEnter"
           ></el-input>
         </el-form-item>
         <el-form-item prop="repassword">
@@ -113,6 +128,7 @@ watch(isRegister, () => {
             :prefix-icon="Lock"
             type="password"
             placeholder="请输入再次密码"
+            @keyup.enter="handleEnter"
           ></el-input>
         </el-form-item>
         <el-form-item>
@@ -147,6 +163,7 @@ watch(isRegister, () => {
             v-model="formModel.username"
             :prefix-icon="User"
             placeholder="请输入用户名"
+            @keyup.enter="handleEnter"
           ></el-input>
         </el-form-item>
         <el-form-item prop="password">
@@ -156,11 +173,11 @@ watch(isRegister, () => {
             :prefix-icon="Lock"
             type="password"
             placeholder="请输入密码"
+            @keyup.enter="handleEnter"
           ></el-input>
         </el-form-item>
         <el-form-item class="flex">
           <div class="flex">
-            <el-checkbox>记住我</el-checkbox>
             <el-link type="primary" :underline="false">忘记密码？</el-link>
           </div>
         </el-form-item>
@@ -188,10 +205,22 @@ watch(isRegister, () => {
   height: 100vh;
   background-color: #fff;
   .bg {
-    background:
-      url('@/assets/logo2.png') no-repeat 60% center / 240px auto,
-      url('@/assets/login_bg.jpg') no-repeat center / cover;
+    background: url('@/assets/login_bg.jpg') no-repeat center / cover;
     border-radius: 0 20px 20px 0;
+    display: flex;
+    div {
+      width: 50%;
+      height: 30%;
+      background-color: rgb(39, 38, 38, 0.8);
+      margin: auto auto;
+      border-radius: 20px;
+    }
+    p {
+      font-size: 50px;
+      font-weight: bold;
+      color: #ffffff;
+      text-align: center;
+    }
   }
   .form {
     display: flex;

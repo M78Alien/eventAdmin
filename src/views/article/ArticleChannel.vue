@@ -10,7 +10,7 @@ const getChannelList = async () => {
   loading.value = true
   const res = await artGetChannelsService()
   channelList.value = res.data.data
-  console.log(res.data.data)
+  // console.log(res.data.data)
   loading.value = false
 }
 getChannelList()
